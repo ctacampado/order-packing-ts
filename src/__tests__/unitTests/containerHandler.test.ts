@@ -62,7 +62,7 @@ describe("Container Handler Unit Tests", () => {
   const productHandler = new ProductHandler(productOrder);
   const productHandlerMany = new ProductHandler(productOrderMany);
   const specs:ContainerSpec[] = [containerSpecsA, containerSpecsB, containerSpecsC];
-  const containerHandler = new ContainerHandler({containerSpecs:specs})
+  const containerHandler = new ContainerHandler({containerSpecs:specs});
 
   test("Given a product, select the correct containter type", () => {
     var dummy: Dimensions = {
@@ -70,7 +70,7 @@ describe("Container Handler Unit Tests", () => {
       length: 0,
       width: 0,
       height: 0,
-    }
+    };
 
     var selected: SelectedContainerStats = {
       notFitCtr: 0,
@@ -78,8 +78,8 @@ describe("Container Handler Unit Tests", () => {
       totPVol: 0,
       type: "",
       dimensions: dummy,
-    }
-    selected = containerHandler.selectContainerSpec(productHandler)
+    };
+    selected = containerHandler.selectContainerSpec(productHandler);
     
     const expectedSelection = {
       notFitCtr: 1,
@@ -92,7 +92,7 @@ describe("Container Handler Unit Tests", () => {
         width: 30,
         height: 30,
       }
-    }
+    };
 
     expect(selected).toEqual(expectedSelection);
   });
@@ -103,7 +103,7 @@ describe("Container Handler Unit Tests", () => {
       length: 0,
       width: 0,
       height: 0,
-    }
+    };
     
     var selected = {
       notFitCtr: 0,
@@ -111,17 +111,17 @@ describe("Container Handler Unit Tests", () => {
       totPVol: 0,
       type: "",
       dimensions: dummy,
-    }
-    selected = containerHandler.selectContainerSpec(productHandler)
+    };
+    selected = containerHandler.selectContainerSpec(productHandler);
 
     const product: Product = {
       id: productHandler.getProductID(),
       quantity: productHandler.getOrderedQty(),
-    }
+    };
 
-    const products: Product[] = [product]
-    const containers = containerHandler.newContainer(selected, products)
-    const container = containers[0]
+    const products: Product[] = [product];
+    const containers = containerHandler.newContainer(selected, products);
+    const container = containers[0];
     
     const expectedContainer:Container = {
       containerType: "Cardboard A",
@@ -142,7 +142,7 @@ describe("Container Handler Unit Tests", () => {
       length: 0,
       width: 0,
       height: 0,
-    }
+    };
     
     var selected = {
       notFitCtr: 0,
@@ -150,16 +150,16 @@ describe("Container Handler Unit Tests", () => {
       totPVol: 0,
       type: "",
       dimensions: dummy,
-    }
-    selected = containerHandler.selectContainerSpec(productHandlerMany)
+    };
+    selected = containerHandler.selectContainerSpec(productHandlerMany);
 
     const product: Product = {
       id: productHandlerMany.getProductID(),
       quantity: productHandlerMany.getOrderedQty(),
-    }
+    };
 
     const products: Product[] = [product]
-    const containers = containerHandler.newContainer(selected, products)
+    const containers = containerHandler.newContainer(selected, products);
     const expectedContainers:Container[] = [
       {
         containerType: "Cardboard A",
@@ -188,7 +188,7 @@ describe("Container Handler Unit Tests", () => {
           }
         ]
       },
-    ]
+    ];
 
     expect(containers).toEqual(expectedContainers);
   });

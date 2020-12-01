@@ -54,22 +54,22 @@ export class ContainerHandler{
   }
 
   selectContainerSpec(product: ProductHandler): SelectedContainerStats {
-    let specs = this.parameters.containerSpecs
+    let specs = this.parameters.containerSpecs;
 
     var dummy: Dimensions = {
       unit: "",
       length: 0,
       width: 0,
       height: 0,
-    }
+    };
 
     var stats: SelectedContainerStats = {
       fitQty: 0,     // number of products that can fit in the selected container spec
       notFitCtr: 0,  // checks how many containers can the product fit into. if it fits all containers, we should throw an error.
       totPVol: 0, // total product order volume
       type: "",
-      dimensions: dummy
-    }
+      dimensions: dummy,
+    };
   
     var cVol = 0,    // container volume
         pVol = 0,    // single product volume
@@ -87,14 +87,14 @@ export class ContainerHandler{
       let tmpPVol = getVolume(product.getDimensions());
       let tmpFitQty = simpleDiv(tmpCVol,tmpPVol);
       let tmpTotPVol = tmpPVol*product.getOrderedQty();
-      let tmpRem = absDiff(tmpCVol,tmpTotPVol)
+      let tmpRem = absDiff(tmpCVol,tmpTotPVol);
       
       // assign the first container that fits. we only change containers
       // if remaining space for the new container is less than the current one
       // so that we won't waste container space by using a much larger container
       if (-1 === rem || tmpRem <= rem) {
-        cVol = tmpCVol
-        pVol = tmpPVol
+        cVol = tmpCVol;
+        pVol = tmpPVol;
         rem = tmpRem;
         stats.type = s.containerType;
         stats.totPVol = tmpTotPVol;
@@ -103,7 +103,7 @@ export class ContainerHandler{
       }
     });
 
-    return stats
+    return stats;
   }
 }
 

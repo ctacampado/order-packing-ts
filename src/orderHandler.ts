@@ -16,7 +16,7 @@ export class OrderHandler {
     const containerHandler = new ContainerHandler({containerSpecs: this.parameters.containerSpecs})
     orderRequest.products.forEach((productOrder) => {
       var productHandler = new ProductHandler(productOrder);
-      var selected = containerHandler.selectContainerSpec(productHandler)
+      var selected = containerHandler.selectContainerSpec(productHandler);
 
       // if product does not fit any types of container, throw error
       if(selected.notFitCtr === this.parameters.containerSpecs.length) {
@@ -25,7 +25,7 @@ export class OrderHandler {
         const product: Product = {
           id: productHandler.getProductID(),
           quantity: productHandler.getOrderedQty(),
-        }
+        };
   
         const res = containerHandler.newContainer(selected, [product]);
         res.forEach((container) => {

@@ -22,26 +22,26 @@ export class ProductHandler {
     if (pDim.height <= cDim.height
       && pDim.length <= cDim.length 
       && pDim.width <= cDim.width) {
-      return true
+      return true;
     }
-    return false
+    return false;
   }
 
   getDimensions(): Dimensions {
-    return this.productOrder.dimensions
+    return this.productOrder.dimensions;
   }
 
   getTotalVolume(): number {
-    let d = this.productOrder.dimensions
-    let q = this.productOrder.orderedQuantity
-    return getVolume(d)*q
+    let d = this.productOrder.dimensions;
+    let q = this.productOrder.orderedQuantity;
+    return getVolume(d)*q;
   }
 
   getOrderedQty(): number {
-    return this.productOrder.orderedQuantity
+    return this.productOrder.orderedQuantity;
   }
 
   getProductID(): string {
-    return this.productOrder.id
+    return this.productOrder.id;
   }
 }

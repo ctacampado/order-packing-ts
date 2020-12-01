@@ -1,7 +1,7 @@
 import { Dimensions } from "./interfaces";
 
 export function getVolume(d: Dimensions): number {
-  return d.height*d.length*d.width
+  return d.height*d.length*d.width;
 }
 
 // returns absolute value for the difference of 2 numbers
@@ -11,12 +11,12 @@ export function absDiff(x: number, y: number): number {
 
 // integer division
 export function simpleDiv(x: number, y: number): number {
-  return Math.floor(x/y)
+  return Math.floor(x/y);
 }
 
 export function isLess(x: number, y: number): boolean {
   if (x < y) { 
-    return true 
+    return true;
   }
-  return false
+  return false;
 }
