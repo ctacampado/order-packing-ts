@@ -1,6 +1,6 @@
-import { Dimensions, ContainerSpec } from "../../interfaces";
+import { ContainerSpec } from "../../interfaces";
 import { ProductOrder } from "../../productHandler";
-import { getVolume, getAbsDiff, isLess } from "../../utils";
+import { getVolume, absDiff, isLess } from "../../utils";
 
 describe("Utils Unit Tests", () => {
   const containerSpecs: ContainerSpec = {
@@ -35,9 +35,9 @@ describe("Utils Unit Tests", () => {
     let cVol = getVolume(containerSpecs.dimensions);
     let pVol = getVolume(productOrder.dimensions);
 
-    const diff = getAbsDiff(pVol,cVol)
-    const absDiff = 24000;
-    expect(diff).toEqual(absDiff);
+    //const diff = absDiff(pVol,cVol);
+    const expectedDiff = 24000;
+    expect(absDiff(pVol,cVol)).toEqual(expectedDiff);
   });
 
   test("given 2 volumes, tell which one is lesser", () => {

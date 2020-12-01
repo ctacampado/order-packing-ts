@@ -37,6 +37,10 @@ export class ProductHandler {
     return getVolume(d)*q
   }
 
+  getOrderedQty(): number {
+    return this.productOrder.orderedQuantity
+  }
+
   getProductID(): string {
     return this.productOrder.id
   }
