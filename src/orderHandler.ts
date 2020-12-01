@@ -1,14 +1,16 @@
 import { ContainerSpec, OrderRequest, ShipmentRecord } from "./interfaces";
 import { ContainerHandler, Container } from "./containerHandler";
-import { ProductHandler, Product, ProductOrder } from "./productHandler";
+import { ProductHandler, Product } from "./productHandler";
 import { getVolume } from "./utils";
+import { errors, ErrorHandler } from "./errors";
 
 
 export class OrderHandler {
+  err = new ErrorHandler()
+  
   constructor(private parameters: { containerSpecs: ContainerSpec[] }) {}
 
   packOrder(orderRequest: OrderRequest): ShipmentRecord {
-    /* TODO: replace with actual implementation */
     // select container for products
     var containers: Container[] = [];
     var totalVolume = 0;
@@ -20,7 +22,7 @@ export class OrderHandler {
 
       // if product does not fit any types of container, throw error
       if(selected.notFitCtr === this.parameters.containerSpecs.length) {
-        throw new Error('perm exists in this id');
+        throw this.err.new(errors.get('NoContainerFit'), {product:productOrder, order:{id:orderRequest.id}});
       } else {
         const product: Product = {
           id: productHandler.getProductID(),
